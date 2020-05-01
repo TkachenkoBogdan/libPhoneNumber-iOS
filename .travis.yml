@@ -9,4 +9,12 @@ script:
 - xctool -project libPhoneNumber.xcodeproj -scheme libPhoneNumberiOSTests run-tests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
 - swift test -c release
 
+jobs:
+  include:
+    - stage: Swift PM
+      osx_image: xcode11.1
+      script:
+        - swift build -c release
+        - swift test -c release
+
 after_success: slather 
